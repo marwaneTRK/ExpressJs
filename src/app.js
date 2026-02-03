@@ -11,6 +11,8 @@ const app = express();
 
 const productRoutes = require("./routes/product.routes");
 const errorMiddleware = require("./middlewares/error.middleware");
+const crudProductRoutes = require("./routes/crud.product.routes");
+
 /*
  ========================
    MIDDLEWARES GLOBAUX
@@ -38,6 +40,7 @@ app.get("/", (req, res) => {
 app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
 app.use(errorMiddleware)
+app.use("/api/crud-products", crudProductRoutes);
 
 
 /*
