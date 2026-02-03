@@ -5,7 +5,14 @@ const logRoutes = require("../middlewares/log.middleware");
 router.use(logRoutes);
 // Liste des produits
 router.get("/", (req, res) => {
- res.json({ message: "Liste des produits" });
+    const { category, maxPrice } = req.query;
+    res.json({
+        message: "Filtrage des produits",
+        filters: {
+            category,
+            maxPrice
+        }
+    });
 });
 // Détail d’un produit
 router.get("/:productId", (req, res) => {

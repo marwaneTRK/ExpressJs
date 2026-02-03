@@ -8,6 +8,8 @@ const morgan = require("morgan");
 const orderRoutes = require("./routes/order.routes");
 // Création de l'application Express
 const app = express();
+
+const productRoutes = require("./routes/product.routes")
 /*
  ========================
    MIDDLEWARES GLOBAUX
@@ -27,10 +29,12 @@ app.use(morgan("dev"));
  ========================
 */
 // Route de test pour vérifier que l’API fonctionne
+
 app.get("/", (req, res) => {
   res.json({ message: "API E-commerce opérationnelle" });
 });// order routes
 app.use("/api/orders", orderRoutes);
+app.use("/api/products", productRoutes);
 
 /*
  ========================
