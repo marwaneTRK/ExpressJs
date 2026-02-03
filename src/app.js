@@ -9,7 +9,8 @@ const orderRoutes = require("./routes/order.routes");
 // Création de l'application Express
 const app = express();
 
-const productRoutes = require("./routes/product.routes")
+const productRoutes = require("./routes/product.routes");
+const errorMiddleware = require("./middlewares/error.middleware");
 /*
  ========================
    MIDDLEWARES GLOBAUX
@@ -23,6 +24,7 @@ app.use(cors());
 app.use(express.json());
 // Affiche les requêtes HTTP dans la console (utile en développement)
 app.use(morgan("dev"));
+
 /*
  ========================
        ROUTE TEST
@@ -35,6 +37,8 @@ app.get("/", (req, res) => {
 });// order routes
 app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
+app.use(errorMiddleware)
+
 
 /*
  ========================
