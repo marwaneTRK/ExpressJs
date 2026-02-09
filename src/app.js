@@ -12,6 +12,7 @@ const app = express();
 const productRoutes = require("./routes/product.routes");
 const errorMiddleware = require("./middlewares/error.middleware");
 const crudProductRoutes = require("./routes/crud.product.routes");
+const statsRoutes = require("./routes/stats.routes");
 
 /*
  ========================
@@ -41,6 +42,8 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
 app.use(errorMiddleware)
 app.use("/api/crud-products", crudProductRoutes);
+app.use("/api/stats", statsRoutes);
+
 
 
 /*
