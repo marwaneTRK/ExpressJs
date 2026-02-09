@@ -14,7 +14,7 @@ const errorMiddleware = require("./middlewares/error.middleware");
 const crudProductRoutes = require("./routes/crud.product.routes");
 const statsRoutes = require("./routes/stats.routes");
 const jwtAuthRoutes = require("./routes/jwt.auth.routes");
-
+const { default: rateLimit } = require("express-rate-limit");
 /*
  ========================
    MIDDLEWARES GLOBAUX
@@ -25,7 +25,7 @@ app.use(helmet());
 // Autorise les requêtes cross-origin (frontend React, mobile, etc.)
 const allowedOrigins = [
   "http://localhost:3000/",   // React dev
-  "http://localhost:5173/",   // Vite dev
+  "http://localhost:5174",   // Vite dev
   "https://monapp.com/",      // Frontend production
   "https://admin.monapp.com/" // Backoffice
 ];
@@ -50,6 +50,7 @@ app.use(cors({
 app.use(express.json());
 // Affiche les requêtes HTTP dans la console (utile en développement)
 app.use(morgan("dev"));
+
 
 /*
  ========================

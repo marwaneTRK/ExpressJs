@@ -18,7 +18,7 @@ const app = require("./app");
 
 
 // Connexion à la base de données MongoDB
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("MongoDB connecté avec succès"))
   .catch(err => console.error("Erreur de connexion MongoDB :", err));
 
