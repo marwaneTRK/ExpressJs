@@ -23,7 +23,29 @@ const jwtAuthRoutes = require("./routes/jwt.auth.routes");
 // Sécurise l'application en configurant divers headers HTTP
 app.use(helmet());
 // Autorise les requêtes cross-origin (frontend React, mobile, etc.)
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:3000/",   // React dev
+  "http://localhost:5173/",   // Vite dev
+  "https://monapp.com/",      // Frontend production
+  "https://admin.monapp.com/" // Backoffice
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Autoriser requêtes sans origin (Postman, mobile apps, server-to-server)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Accès CORS refusé  Origine non autorisée : " + origin));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
+
 // Permet à Express de comprendre le JSON envoyé dans le body des requêtes
 app.use(express.json());
 // Affiche les requêtes HTTP dans la console (utile en développement)
