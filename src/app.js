@@ -13,6 +13,7 @@ const productRoutes = require("./routes/product.routes");
 const errorMiddleware = require("./middlewares/error.middleware");
 const crudProductRoutes = require("./routes/crud.product.routes");
 const statsRoutes = require("./routes/stats.routes");
+const jwtAuthRoutes = require("./routes/jwt.auth.routes");
 
 /*
  ========================
@@ -43,6 +44,7 @@ app.use("/api/products", productRoutes);
 app.use(errorMiddleware)
 app.use("/api/crud-products", crudProductRoutes);
 app.use("/api/stats", statsRoutes);
+app.use("/api/auth", jwtAuthRoutes);
 
 
 
